@@ -1,7 +1,9 @@
 
 
 export const NavBar = () => {
-    return (
-        <h1>Navigation Bar</h1>
-    )
+  return (
+    <>
+      <h1>Navigation Bar</h1><hr/>
+    </>
+  )
 }
