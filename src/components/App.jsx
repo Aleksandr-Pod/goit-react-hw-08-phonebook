@@ -1,35 +1,17 @@
-import { useState } from 'react';
-// components
-import { InputForm } from './InputForm/InputForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
-// styled components
-import { PhonebookBox } from './Phonebook/Phonebook.styled';
-import { InputFormBox } from './InputForm/InputForm.styled';
-import { ContactListBox } from './ContactItem/ContactItem.styled';
+import { Phonebook } from "./Phonebook/Phonebook";
+import { Routes, Route } from "react-router-dom";
+import { NavBar } from "./NavBar/navBar";
 
-import { useGetContactsQuery } from '../ContactsAPI/contactsAPI';
-
-export function App() {
-
-  const { data } = useGetContactsQuery();
-
-  const contacts = data ?? [];
-  const [myFilter, setMyFilter] = useState('');
-
-  const normalizedFilter = myFilter.toLowerCase();
-  const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+export const App = () => {
+  const greetings = "<h2> Hello, my friend </h2>";
 
   return (
-    <PhonebookBox>
-      <InputFormBox>
-        <h1>Phonebook</h1>
-        <InputForm contacts={contacts}/>
-      </InputFormBox>
-      <ContactListBox>
-        <Filter filter={myFilter} setFilter={setMyFilter}/>
-        <ContactList contacts={filteredContacts.reverse()}/>
-      </ContactListBox>
-    </PhonebookBox>
-  );
+
+    <Routes>
+      <Route path="/" elements={<NavBar />}/>;
+      <Route index elements={greetings}/>;
+      <Route path="/Phonebook" elements={<Phonebook />}/>;
+    </Routes>
+
+  )
 }
