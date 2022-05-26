@@ -6,7 +6,7 @@ import { toggleLogin } from 'Redux/authSlice';
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const onSubmit = (value, action) => {
+  const onSubmit = (_, action) => {
     dispatch(toggleLogin);
     action.resetForm();
   }

@@ -5,7 +5,8 @@ import { Header } from "./navBar.styled";
 import { useSelector } from "react-redux";
 
 export const NavBar = () => {
-  const isLogged = useSelector(state => state.isLogged);
+  const isLogged = useSelector(state => state.auth.isLogged);
+  console.log('isLogged:', isLogged);
   return (
     <section>
       <Header>

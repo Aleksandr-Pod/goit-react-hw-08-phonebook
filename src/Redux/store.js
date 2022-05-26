@@ -12,7 +12,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
   reducer: {
     auth: persistedReducer,
-    [contactsAPI.reducerPath]: contactsAPI.reducer,
+    [contactsAPI.reducerPath]: contactsAPI.reducer
   },
   middleware: getDefaultMiddleware => 
     getDefaultMiddleware({
