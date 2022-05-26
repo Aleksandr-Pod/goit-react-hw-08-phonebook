@@ -3,6 +3,7 @@
 import { Home } from "components/Greetings/greetings.styled";
 import { useDispatch } from 'react-redux';
 import { toggleLogin } from 'Redux/authSlice';
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -13,7 +14,7 @@ export const LoginForm = () => {
   return (
     <Home>
       <h2>Login Form</h2>
-      <button type="button" onSubmit={onSubmit}>submit</button>
+      <button type="submit" onSubmit={onSubmit}>Submit</button>
       {/* <Formik 
       initialValues={{email: "", password: "" }}
       onSubmit={onSubmit} >
