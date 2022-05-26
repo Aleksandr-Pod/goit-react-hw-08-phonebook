@@ -1,7 +1,9 @@
+import { UserEmail } from "./userMenu.styled"
+
 export const UserMenu = () => {
     return (
         <>
-            <p>Тут почта юзера</p>
+            <UserEmail>Тут почта юзера</UserEmail>
             <button type="button">LogOut</button>
         </>
     )
