@@ -6,9 +6,10 @@ import { addUser } from "Redux/authSlice";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  console.log('auth;', useSelector(store => store.auth));
+  console.log('auth:', useSelector(store => store.auth));
 
   const handleSubmit = (value, action) => {
+    console.log('value:', value)
     dispatch(addUser(value));
     action.resetForm();
   }

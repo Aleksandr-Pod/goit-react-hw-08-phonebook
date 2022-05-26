@@ -6,14 +6,15 @@ import { toggleLogin } from 'Redux/authSlice';
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const onSubmit = (_, action) => {
+  const onSubmit = (state, action) => {
     dispatch(toggleLogin);
-    action.resetForm();
+    // action.resetForm();
   }
   return (
     <Home>
       <h2>Login Form</h2>
-      <Formik 
+      <button type="button" onSubmit={onSubmit}>submit</button>
+      {/* <Formik 
       initialValues={{email: "", password: "" }}
       onSubmit={onSubmit} >
       <FormBox>
@@ -25,7 +26,7 @@ export const LoginForm = () => {
         </label>
         <button type="submit">Submit</button>
         </FormBox>
-      </Formik>
+      </Formik> */}
     </Home>
   )
 }
