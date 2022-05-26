@@ -8,10 +8,10 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        toggleLogin(state, action) { state.auth.isLogged = !state.auth.isLogged },
+        toggleLogin(state, action) { state.isLogged = !state.isLogged },
         addUser(state, {payload}) {
-            state.auth.user.name = payload.name;
-            state.auth.user.email = payload.email;
+            state.user.name = payload.name;
+            state.user.email = payload.email;
         }
     }
 })
