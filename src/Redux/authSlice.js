@@ -8,8 +8,9 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        toggleLogin(state) {state.auth.isLogged=!state.auth.isLogged}
+        toggleLogin(state) { state.auth.isLogged = !state.auth.isLogged },
+        addUser(state, action) {state.auth.user = action.payload}
     }
 })
-export const { toggleLogin } = authSlice.actions;
+export const { toggleLogin, addUser } = authSlice.actions;
 export default authSlice.reducer; 

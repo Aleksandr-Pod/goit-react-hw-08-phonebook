@@ -1,11 +1,13 @@
 import { Formik } from "formik";
 import { Input, FormBox } from "components/AuthForm/authForm.styled";
 import { Home } from "components/Greetings/greetings.styled";
-
+import { useDispatch } from 'react-redux';
+import { toggleLogin } from 'Redux/authSlice';
 export const LoginForm = () => {
+  const dispatch = useDispatch();
 
   const onSubmit = (value, action) => {
-    console.log(value);
+    dispatch(toggleLogin);
     action.resetForm();
   }
   return (
