@@ -1,5 +1,5 @@
 import { UserEmail } from "./userMenu.styled";
-import { Button } from "../navBar.styled";
+// import { Button } from "../navBar.styled";
 
 export const UserMenu = () => {
     const onLogOut = () => {
