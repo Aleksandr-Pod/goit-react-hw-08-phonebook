@@ -1,4 +1,4 @@
-import { useAddContactMutation } from 'ContactsAPI/contactsAPI';
+import { useAddContactMutation } from 'API/contactsAPI';
 // styled components
 import { InputItem } from "./InputForm.styled";
 // other libs

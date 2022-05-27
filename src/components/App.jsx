@@ -11,9 +11,9 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<NavBar />} >;
         <Route index element={<Greetings />} />;
-        <Route path="login" element={<LoginForm/>} />;
-        <Route path="register" element={<RegisterForm/>} />;
+        <Route path="login" element={<LoginForm />} />;
         <Route path="phonebook" element={<Phonebook />} />;
+        <Route path="register" element={<RegisterForm/>} />;
       </Route>
     </Routes>
   )

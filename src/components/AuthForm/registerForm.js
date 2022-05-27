@@ -3,13 +3,15 @@ import { Input, FormBox } from "components/AuthForm/authForm.styled";
 import { Home } from "components/Greetings/greetings.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "Redux/authSlice";
+import { register } from "API/authOperations";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   console.log('auth:', useSelector(store => store.auth));
 
   const handleSubmit = (value, action) => {
-    console.log('value:', value)
+    console.log('value:', value);
+    register(value);
     dispatch(addUser(value));
     action.resetForm();
   }

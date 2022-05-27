@@ -1,17 +1,23 @@
 import { Formik } from "formik";
 import { Input, FormBox } from "components/AuthForm/authForm.styled";
 import { Home } from "components/Greetings/greetings.styled";
-import { useDispatch } from 'react-redux';
-import { toggleLogin } from 'Redux/authSlice';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from "API/authOperations";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
+
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const currState = useSelector(state => state.auth.isLogged);
+  const isLogged = useSelector(state => state.auth.isLogged);
+  const navigate = useNavigate();
 
-  const onSubmit = (_, action) => {
-    console.log('onSubmit');
-    dispatch(toggleLogin(currState));
+  useEffect(() => {
+    if (isLogged) navigate('/phonebook');
+  }, [isLogged, navigate])
+
+  const onSubmit = (values, action) => {
+    dispatch(login(values)); // запрос на сервер этого юзера
     action.resetForm();
   }
   return (

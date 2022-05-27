@@ -8,7 +8,7 @@ import { PhonebookBox } from './Phonebook.styled';
 import { InputFormBox } from '../InputForm/InputForm.styled';
 import { ContactListBox } from '../ContactItem/ContactItem.styled';
 
-import { useGetContactsQuery } from 'ContactsAPI/contactsAPI';
+import { useGetContactsQuery } from 'API/contactsAPI';
 
 export function Phonebook() {
 

@@ -1,6 +1,6 @@
 import { ListItem, NumByOrder, TelNum, DelBtn } from "./ContactItem.styled";
 import PropTypes from 'prop-types';
-import { useDeleteContactMutation } from "ContactsAPI/contactsAPI";
+import { useDeleteContactMutation } from "API/contactsAPI";
 
 export function ContactItem({ contact, idx }) {
     const [deleteContact] = useDeleteContactMutation()
