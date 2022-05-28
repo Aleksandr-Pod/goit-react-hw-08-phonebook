@@ -1,7 +1,7 @@
 import { UserEmail } from "./userMenu.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLogin } from "Redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import { logout } from "API/authOperations";
 
 export const UserMenu = () => {
     const dispatch = useDispatch();
@@ -9,7 +9,7 @@ export const UserMenu = () => {
     const user = useSelector(state => state.auth.user.email);
 
     const onLogOut = () => {
-        dispatch(toggleLogin(false));
+        dispatch(logout(false));
         navigate('/');
     }
     return (
