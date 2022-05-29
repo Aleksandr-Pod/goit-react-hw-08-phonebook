@@ -39,10 +39,19 @@ export const login = ({ email, password}) => dispatch => {
 export const logout = () => dispatch => {
     axios.post(`${baseUrl}logout`)
         .then(resp => {
-            console.log('logOut response ok:', resp)
+            console.log('logOut response:', resp)
             dispatch(toggleLogin(false));
             dispatch(addUser(emptyUser));
             token.unset();
+        })
+        .catch(error => dispatch(changeError(error.message)))
+        .finally(dispatch(changeLoading(false)));
+}
+export const getCurrent = () => dispatch => {
+    axios.get(`${baseUrl}current`)
+        .then(resp => {
+            console.log('current response:', resp)
+            dispatch(toggleLogin(true));
         })
         .catch(error => dispatch(changeError(error.message)))
         .finally(dispatch(changeLoading(false)));
