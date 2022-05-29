@@ -1,13 +1,30 @@
-// mockapi - https://628a0f12e5e5a9ad32206b7a.mockapi.io/:endpoint
+// mockapi - https://628a0f12e5e5a9ad32206b7a.mockapi.io/:endpoint;
+import axios from 'axios';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+const axiosBaseQuery =
+  ({ baseUrl } = { baseUrl: '' }) =>
+  async ({ url, method, data, params }) => {
+    try {
+      const result = await axios({ url: baseUrl + url, method, data, params })
+      return { data: result.data }
+    } catch (axiosError) {
+      let err = axiosError
+      return {
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+        },
+      }
+    }
+  }
 
 export const contactsAPI = createApi ({
     reducerPath: 'contacts',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://628a0f12e5e5a9ad32206b7a.mockapi.io/' }),
+    baseQuery: axiosBaseQuery({ baseUrl: 'https://connections-api.herokuapp.com/' }),
     endpoints: builder => ({
         getContacts: builder.query({
-            query: () => 'contacts/',
+            query: () => ({ url: 'contacts/', method: 'GET' }),
             providesTags: ['contacts']
         }),
         addContact: builder.mutation({

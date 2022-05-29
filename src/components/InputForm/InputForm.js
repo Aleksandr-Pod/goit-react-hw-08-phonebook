@@ -10,12 +10,12 @@ export function InputForm ({contacts}) {
     const onSubmit = (values, action) => {
         const equalName = contacts.find(el => (el.name.toLowerCase() === values.name.toLowerCase()));
         if (equalName) return alert(equalName.name + " is already in contacts");
-
+        console.log(values);
         addContact(values);
         action.resetForm();
     }
         return (
-            <Formik initialValues={{ name: "", phone: "" }} onSubmit={onSubmit}>
+            <Formik initialValues={{ name: "", number: "" }} onSubmit={onSubmit}>
                 <Form><label>Name
                 <InputItem
                     type="text"
@@ -26,7 +26,7 @@ export function InputForm ({contacts}) {
                 /></label>
                 <label>Number<InputItem
                     type="tel"
-                    name="phone"
+                    name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
