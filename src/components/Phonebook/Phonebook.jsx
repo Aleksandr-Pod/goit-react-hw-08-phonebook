@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 // components
 import { InputForm } from '../InputForm/InputForm';
 import { Filter } from '../Filter/Filter';
@@ -11,7 +13,11 @@ import { ContactListBox } from '../ContactItem/ContactItem.styled';
 import { useGetContactsQuery } from 'API/contactsAPI';
 
 export function Phonebook() {
-
+  const token = useSelector(state => state.auth.token);
+  if (token) {
+    console.log('user is already logged in');
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
   const { data } = useGetContactsQuery();
 
   const contacts = data ?? [];
