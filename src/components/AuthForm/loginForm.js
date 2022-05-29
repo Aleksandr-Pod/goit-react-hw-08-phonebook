@@ -17,7 +17,7 @@ export const LoginForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLogged) navigate('/phonebook'); // если залогинен - ид'м в тел. книгу
+    if (isLogged) navigate('/phonebook'); // если залогинен => в тел. книгу
   }, [isLogged, navigate])
 
   useEffect(() => () => {
