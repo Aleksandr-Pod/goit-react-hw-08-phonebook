@@ -16,7 +16,9 @@ const emptyUser = {
 export const register = (user) => dispatch => {
     axios.post(`${baseUrl}signup`, user)
         .then(resp => {
-            console.log('register status:', resp.data.status);
+            dispatch(addUser(resp.data));
+            token.set(resp.data.token);
+            dispatch(toggleLogin(true));
         })
         .catch(error => {
             dispatch(changeError(error.response.data.errors));

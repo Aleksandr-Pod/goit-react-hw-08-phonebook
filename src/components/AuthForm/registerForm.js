@@ -5,12 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeLoading, changeError } from "Redux/authSlice";
 import { register } from "API/authOperations";
 import { Error } from "components/ErrorMessage/errormessage";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  // console.log('auth:', useSelector(store => store.auth));
-  const isLoading = useSelector(store => store.auth.isLoading);
-  const error = useSelector(state => state.auth.error);
+  const navigate = useNavigate();
+  const { isLoading, isLogged, error } = useSelector(store => store.auth);
+
+  useEffect(() => {
+    if (isLogged) navigate('/phonebook'); // если залогинен - ид'м в тел. книгу
+  }, [isLogged, navigate])
 
   const handleSubmit = (value, action) => {
     console.log('value:', value);

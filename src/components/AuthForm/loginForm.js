@@ -10,13 +10,14 @@ import { Error } from "components/ErrorMessage/errormessage";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const isLogged = useSelector(state => state.auth.isLogged);
-  const isLoading = useSelector(state => state.auth.isLoading);
-  const error = useSelector(state => state.auth.error);
+  // const isLogged = useSelector(state => state.auth.isLogged);
+  // const isLoading = useSelector(state => state.auth.isLoading);
+  // const error = useSelector(state => state.auth.error);
+  const { isLogged, isLoading, error } = useSelector(state => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLogged) navigate('/phonebook');
+    if (isLogged) navigate('/phonebook'); // если залогинен - ид'м в тел. книгу
   }, [isLogged, navigate])
 
   useEffect(() => () => {

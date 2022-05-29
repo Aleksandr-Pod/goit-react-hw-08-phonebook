@@ -11,7 +11,7 @@ export const UserMenu = () => {
 
     useEffect(() => {
         navigate('/phonebook');
-        return () => navigate('/login');
+        return () => navigate('/');
     }, [navigate])
     
     return (
