@@ -3,15 +3,21 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage'
 import { contactsAPI } from 'API/contactsAPI';
 import authReducer from './authSlice';
+import filterReducer from './filterSlice';
 
 const persistConfig = {
   key: 'auth', storage
 }
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistFilterConfig = {
+  key: 'filter', storage
+}
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedFilterReducer = persistReducer(persistFilterConfig, filterReducer);
 
 const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    auth: persistedAuthReducer,
+    filter: persistedFilterReducer,
     [contactsAPI.reducerPath]: contactsAPI.reducer
   },
   middleware: getDefaultMiddleware => 

@@ -10,17 +10,11 @@ import { Error } from "components/ErrorMessage/errormessage";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  // const isLogged = useSelector(state => state.auth.isLogged);
-  // const isLoading = useSelector(state => state.auth.isLoading);
-  // const error = useSelector(state => state.auth.error);
   const { isLogged, isLoading, error } = useSelector(state => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLogged) {
-      console.log('useEffect in Login Form')
-      navigate('/phonebook');
-    } // если залогинен => в тел. книгу
+    if (isLogged) {navigate('/phonebook')} // если залогинен => в тел. книгу
   }, [isLogged, navigate])
 
   useEffect(() => () => {
@@ -31,7 +25,7 @@ export const LoginForm = () => {
     dispatch(changeError(null));
     dispatch(changeLoading(true));
     dispatch(login(values)); // запрос на сервер этого юзера
-    // action.resetForm();
+    action.resetForm();
   }
   return (
     <Home>

@@ -1,4 +1,3 @@
-// mockapi - https://628a0f12e5e5a9ad32206b7a.mockapi.io/:endpoint;
 import axios from 'axios';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
@@ -32,7 +31,7 @@ export const contactsAPI = createApi ({
             query: data => ({
                 url: 'contacts',
                 method: "POST",
-                data: data
+                data
             }),
             invalidatesTags: ['contacts']
         }),

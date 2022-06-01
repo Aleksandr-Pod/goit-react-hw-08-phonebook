@@ -1,7 +1,6 @@
-// https://connections-api.herokuapp.com/
-
 import axios from 'axios';
 import { addUser, toggleLogin, changeLoading, changeError } from 'Redux/authSlice';
+import { setFilter } from 'Redux/filterSlice';
 
 const baseUrl = 'https://connections-api.herokuapp.com/users/';
 const token = {
@@ -25,34 +24,33 @@ export const register = (user) => dispatch => {
         })   
         .finally(dispatch(changeLoading(false)));
 }
-export const login = ({ email, password}) => dispatch => {
+export const login = ({ email, password }) => dispatch => {
     axios.post(`${baseUrl}login`, { email, password })
         .then(resp => {
             dispatch(addUser(resp.data));
             token.set(resp.data.token);
             dispatch(toggleLogin(true));
         })
-        .catch(error => dispatch(changeError(error.response)))
+        .catch(error => {
+            dispatch(changeError(error.response.statusText))
+        })
         .finally(dispatch(changeLoading(false)));
 }
 
 export const logout = () => dispatch => {
     axios.post(`${baseUrl}logout`)
         .then(resp => {
-            console.log('logOut response:', resp)
             dispatch(toggleLogin(false));
             dispatch(addUser(emptyUser));
+            dispatch(setFilter(''));
             token.unset();
         })
-        .catch(error => dispatch(changeError(error.message)))
+        .catch(error => dispatch(changeError(error.response.statusText)))
         .finally(dispatch(changeLoading(false)));
 }
 export const getCurrent = () => dispatch => {
     axios.get(`${baseUrl}current`)
-        .then(resp => {
-            console.log('current response:', resp)
-            dispatch(toggleLogin(true));
-        })
-        .catch(error => dispatch(changeError(error.message)))
+        .then(resp => { dispatch(toggleLogin(true)) })
+        .catch(error => dispatch(changeError(error.response.statusText)))
         .finally(dispatch(changeLoading(false)));
 }
