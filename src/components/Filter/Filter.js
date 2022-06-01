@@ -1,17 +1,16 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilter } from 'Redux/authSlice';
 
-export const Filter = ({filter, setFilter}) => {
+export const Filter = () => {
+  const filter = useSelector(state => state.auth.filter);
+  const dispatch = useDispatch();
   return (
     <div>
       <h3>Find contacts by name</h3>
       <input
         type="text"
         value={filter}
-        onChange={evt => setFilter(evt.currentTarget.value)} />
+        onChange={evt => dispatch(setFilter(evt.currentTarget.value))} />
     </div>
   )
-}
-Filter.propTypes = {
-  filter: PropTypes.string,
-  setFilter: PropTypes.func
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 // components
@@ -13,18 +13,17 @@ import { ContactListBox } from '../ContactItem/ContactItem.styled';
 import { useGetContactsQuery } from 'API/contactsAPI';
 
 export function Phonebook() {
-  const token = useSelector(state => state.auth.token);
-  console.log('token:', token);
+  const { token, filter } = useSelector(state => state.auth);
+  console.log('filter', filter);
+  console.log('token', token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  
-  // dispatch(getCurrent()); // проверка юзера
 
   const { data } = useGetContactsQuery();
-
   const contacts = data ?? [];
-  const [myFilter, setMyFilter] = useState('');
+  // const [myFilter, setMyFilter] = useState('');
+  // const myFilter = useSelector(state => state.auth.filter);
 
-  const normalizedFilter = myFilter.toLowerCase();
+  const normalizedFilter = filter.toLowerCase();
   const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
 
   return (
@@ -34,7 +33,7 @@ export function Phonebook() {
         <InputForm contacts={contacts}/>
       </InputFormBox>
       <ContactListBox>
-        <Filter filter={myFilter} setFilter={setMyFilter}/>
+        <Filter/>
         <ContactList contacts={filteredContacts.reverse()}/>
       </ContactListBox>
     </PhonebookBox>

@@ -4,6 +4,7 @@ import { Greetings } from "./Greetings/greetings";
 import { Phonebook } from "./Phonebook/Phonebook";
 import { RegisterForm } from "./AuthForm/registerForm";
 import { LoginForm } from "./AuthForm/loginForm";
+import { PageNotFound } from "./PageNotFound/pageNotFound";
 
 export const App = () => {
 
@@ -13,8 +14,10 @@ export const App = () => {
         <Route index element={<Greetings />} />;
         <Route path="login" element={<LoginForm />} />;
         <Route path="phonebook" element={<Phonebook />} />;
-        <Route path="register" element={<RegisterForm/>} />;
+        <Route path="register" element={<RegisterForm />} />;
+        
       </Route>
+      <Route path="*" element={<PageNotFound/>} />;
     </Routes>
   )
 }
