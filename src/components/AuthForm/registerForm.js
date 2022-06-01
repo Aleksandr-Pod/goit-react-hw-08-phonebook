@@ -18,11 +18,10 @@ export const RegisterForm = () => {
   }, [isLogged, navigate])
 
   const handleSubmit = (value, action) => {
-    console.log('value:', value);
     dispatch(changeError(null)); // обнуляем ошибки
     dispatch(changeLoading(true)); 
     dispatch(register(value)); // запрос на регистрацию
-    // action.resetForm();
+    // action.resetForm(); // лучше не очищать форму
   }
   return (
     <Home>
