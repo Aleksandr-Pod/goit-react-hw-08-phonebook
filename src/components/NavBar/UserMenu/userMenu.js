@@ -7,8 +7,7 @@ import { useEffect } from "react";
 export const UserMenu = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector(state => state.auth.user.name);
-
+    const { user } = useSelector(state => state.auth.user.name);
     useEffect(() => {
         navigate('/phonebook');
         return () => navigate('/');
