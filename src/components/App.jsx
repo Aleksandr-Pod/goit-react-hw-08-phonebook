@@ -4,9 +4,10 @@ import { Greetings } from "./Greetings/greetings";
 import { RegisterForm } from "./AuthForm/registerForm";
 import { PageNotFound } from "./PageNotFound/pageNotFound";
 import { PrivateRoute } from "./privateRoute";
-import { RedirectRoute } from "./redirectRoute";
+// import { RedirectRoute } from "./redirectRoute";
 import { LoginForm } from "./AuthForm/loginForm";
 import { Phonebook } from "./Phonebook/Phonebook";
+import { RedirectRoute } from "./redirectRoute";
 
 export const App = () => {
 
@@ -15,8 +16,8 @@ export const App = () => {
       <Route path="/" element={<NavBar />} >;
         <Route index element={<Greetings />} />;
         <Route path="register" element={<RegisterForm />} />;
-        <Route path="login" element={<LoginForm />} />;
-        <Route path="phonebook" element={<PrivateRoute path="login"><Phonebook/></PrivateRoute>} />;
+        <Route path="login" element={<RedirectRoute><LoginForm /></RedirectRoute>} />;
+        <Route path="phonebook" element={<PrivateRoute><Phonebook/></PrivateRoute>} />;
       </Route>
       <Route path="*" element={<PageNotFound/>} />;
     </Routes>
