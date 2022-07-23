@@ -14,7 +14,7 @@ export const RegisterForm = () => {
   const { isLoading, isLogged, error } = useSelector(store => store.auth);
 
   useEffect(() => {
-    if (isLogged) navigate('/phonebook'); // если залогинен - ид'м в тел. книгу
+    if (isLogged) navigate('/phonebook', {replace: true}); // если залогинен - идём в тел. книгу
   }, [isLogged, navigate])
 
   const handleSubmit = (value, action) => {
