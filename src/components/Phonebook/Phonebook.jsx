@@ -1,7 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
-// import { useEffect } from 'react';
 // components
 import { InputForm } from '../InputForm/InputForm';
 import { Filter } from '../Filter/Filter';
@@ -15,14 +13,7 @@ import axios from 'axios';
 
 export function Phonebook() {
   const { token, isLogged } = useSelector(state => state.auth);
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //   console.log('useEffect in Phonebook');
-    //   if (!isLogged) navigate('/');
-    // }, [isLogged, navigate])
-
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   return (
   <>
     {(!isLogged) ? <Navigate to="/login" /> :
