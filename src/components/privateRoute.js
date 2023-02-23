@@ -5,8 +5,6 @@ export const PrivateRoute = ({ children }) => {
     const isLogged = useSelector(state => state.auth.isLogged);
     console.log('Private Route')
     return (
-        <>
-            {isLogged ? children : <Navigate to="/login" replace />}
-        </>
+        isLogged ? children : <Navigate to="/login" replace />
     )
 }

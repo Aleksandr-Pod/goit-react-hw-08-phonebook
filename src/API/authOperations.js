@@ -45,12 +45,32 @@ export const logout = () => dispatch => {
             dispatch(setFilter(''));
             token.unset();
         })
-        .catch(error => dispatch(changeError(error.response.statusText)))
+        .catch(({response}) => { 
+            // if (response.statusText === "Unauthorized") 
+            dispatch(changeError(response.statusText));
+            dispatch(toggleLogin(false));
+            dispatch(addUser(emptyUser));
+            dispatch(setFilter(''));
+        })
         .finally(dispatch(changeLoading(false)));
 }
 export const getCurrent = () => dispatch => {
     axios.get(`${baseUrl}current`)
-        .then(resp => { dispatch(toggleLogin(true)) })
-        .catch(error => dispatch(changeError(error.response.statusText)))
+        .then(resp => { 
+            dispatch(toggleLogin(true));
+            dispatch(addUser({
+                user: resp.data,
+                token: axios.defaults.headers.common.Authorization.split(" ")[1]
+            }));
+        })
+        .catch(err => { 
+            dispatch(changeError(err.response.statusText));
+            if (err.response.statusText === "Unauthorized") {
+                dispatch(toggleLogin(false));
+                dispatch(addUser(emptyUser));
+                dispatch(setFilter(''));
+                token.unset();
+            }
+        })
         .finally(dispatch(changeLoading(false)));
 }

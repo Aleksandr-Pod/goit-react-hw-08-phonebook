@@ -1,21 +1,17 @@
-import { Formik } from "formik";
-import { Input, FormBox } from "components/AuthForm/authForm.styled";
-import { Home } from "components/Greetings/greetings.styled";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik } from "formik";
+// components
 import { login } from "API/authOperations";
 import { changeLoading, changeError } from "Redux/authSlice";
-import { useNavigate } from "react-router";
-import { useEffect } from "react";
 import { Error } from "components/ErrorMessage/errormessage";
+// styles
+import { Input, FormBox } from "components/AuthForm/authForm.styled";
+import { Home } from "components/Greetings/greetings.styled";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const { isLogged, isLoading, error } = useSelector(state => state.auth);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isLogged) { navigate('/phonebook') }; // если залогинен => в тел. книгу
-  }, [isLogged, navigate])
+  const { isLoading, error } = useSelector(state => state.auth);
 
   useEffect(() => () => {
     dispatch(changeError(null)) // при размонтировании обнуляем ошибку

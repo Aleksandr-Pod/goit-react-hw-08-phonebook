@@ -1,21 +1,16 @@
-import { Formik } from "formik";
-import { Input, FormBox } from "components/AuthForm/authForm.styled";
-import { Home } from "components/Greetings/greetings.styled";
 import { useSelector, useDispatch } from "react-redux";
+import { Formik } from "formik";
+// components
 import { changeLoading, changeError } from "Redux/authSlice";
 import { register } from "API/authOperations";
 import { Error } from "components/ErrorMessage/errormessage";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+// styles
+import { Input, FormBox } from "components/AuthForm/authForm.styled";
+import { Home } from "components/Greetings/greetings.styled";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { isLoading, isLogged, error } = useSelector(store => store.auth);
-
-  useEffect(() => {
-    if (isLogged) navigate('/phonebook', {replace: true}); // если залогинен - идём в тел. книгу
-  }, [isLogged, navigate])
+  const { isLoading, error } = useSelector(store => store.auth);
 
   const handleSubmit = (value, action) => {
     dispatch(changeError(null)); // обнуляем ошибки
