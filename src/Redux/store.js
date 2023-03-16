@@ -22,7 +22,7 @@ const store = configureStore({
   },
   middleware: getDefaultMiddleware => 
     getDefaultMiddleware({
-            serializableCheck: { ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] }
+            serializableCheck: { ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] }
         }).concat(contactsAPI.middleware)
 });
 
